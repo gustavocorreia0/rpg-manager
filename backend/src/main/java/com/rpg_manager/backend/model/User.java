@@ -17,12 +17,12 @@ public class User {
     private String password;
     private String type;
     private Date birthday;
-    private Object img_profile;
+    private byte[] img_profile;
 
     public User(){
     }
 
-    public User(int id, String username, String email, String password, String type, Date birthday, Object img_profile) {
+    public User(int id, String username, String email, String password, String type, Date birthday, byte[] img_profile) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -80,7 +80,7 @@ public class User {
         this.birthday = birthday;
     }
 
-    public void setImg_profile(Object img_profile) {
+    public void setImg_profile(byte[] img_profile) {
         this.img_profile = img_profile;
     }
 }
