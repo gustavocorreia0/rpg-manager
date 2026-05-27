@@ -1,21 +1,22 @@
 CREATE TABLE public.tb_users (
 	id integer GENERATED ALWAYS AS IDENTITY NOT NULL,
-	username varchar NULL,
-	email varchar NULL,
-	"password" varchar NULL,
-	"type" varchar NULL,
-	birthday date NULL,
+	username varchar NOT NULL UNIQUE,
+	email varchar NOT NULL UNIQUE,
+	"password" varchar NOT NULL,
+	"type" varchar NOT NULL,
+	birthday date NOT NULL,
 	img_profile bytea NULL,
 	CONSTRAINT tb_users_pk PRIMARY KEY (id)
 );
 
 CREATE TABLE public.tb_characters (
 	id integer GENERATED ALWAYS AS IDENTITY NOT NULL,
-	"name" varchar NULL,
+    id_user integer NOT NULL,
+	"name" varchar NOT NULL,
 	"type" varchar NULL,
-	"money" float NULL,
+	"money" float NOT NULL DEFAULT 0,
 	CONSTRAINT tb_characters_pk PRIMARY KEY (id),
-	CONSTRAINT tb_characters_tb_users_fk FOREIGN KEY (id) REFERENCES public.tb_users(id)
+	CONSTRAINT tb_characters_tb_users_fk FOREIGN KEY (id_user) REFERENCES public.tb_users(id)
 );
 
 CREATE TABLE public.tb_physical_atributes (
@@ -37,17 +38,16 @@ CREATE TABLE public.tb_skills (
 	id integer GENERATED ALWAYS AS IDENTITY NOT NULL,
 	"name" varchar NOT NULL,
 	description varchar NULL,
-	stamina_cost int NULL,
-	mana_cost int NULL,
+	stamina_cost int NOT NULL DEFAULT 0,
+	mana_cost int NOT NULL DEFAULT 0,
 	CONSTRAINT tb_skills_pk PRIMARY KEY (id)
 );
 
 CREATE TABLE public.tb_itens (
 	id integer GENERATED ALWAYS AS IDENTITY NOT NULL,
-	"name" varchar NULL,
+	"name" varchar NOT NULL,
 	description varchar NULL,
-	value float
-	    NULL,
+	value float NOT NULL DEFAULT 0,
 	CONSTRAINT tb_itens_pk PRIMARY KEY (id)
 );
 
@@ -56,7 +56,7 @@ CREATE TABLE public.tb_equipment (
 	"name" varchar NOT NULL,
 	description varchar NULL,
 	rarity varchar NOT NULL,
-	value float NOT NULL,
+	value float NOT NULL DEFAULT 0,
 	CONSTRAINT tb_equipment_pk PRIMARY KEY (id)
 );
 

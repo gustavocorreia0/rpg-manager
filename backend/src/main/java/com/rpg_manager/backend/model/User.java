@@ -1,25 +1,44 @@
 package com.rpg_manager.backend.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.rpg_manager.backend.dto.UserDTO;
+import jakarta.annotation.Nonnull;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+
 import java.util.Date;
 
 @Entity
+@Table(name = "tb_users")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @NotNull
     private String username;
+
+    @NotNull
     private String email;
+
+    @NotNull
     private String password;
+
+    @NotNull
     private String type;
+
     private Date birthday;
     private byte[] img_profile;
 
+
     public User(){
+    }
+
+    public User(String username, String email, String password, Date birthday) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.birthday = birthday;
     }
 
     public User(int id, String username, String email, String password, String type, Date birthday, byte[] img_profile) {
@@ -30,6 +49,15 @@ public class User {
         this.type = type;
         this.birthday = birthday;
         this.img_profile = img_profile;
+    }
+
+    // Construtor com type setado fixo
+    public User(UserDTO userDTO){
+        this.username = userDTO.getUsername();
+        this.email = userDTO.getEmail();
+        this.password = userDTO.getPassword();
+        this.birthday = userDTO.getBirthday();
+        this.type = "teste";
     }
 
     public int getId() {
