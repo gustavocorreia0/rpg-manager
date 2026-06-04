@@ -1,8 +1,11 @@
 package com.rpg_manager.backend.model;
 
 import com.rpg_manager.backend.dto.UserDTO;
-import jakarta.annotation.Nonnull;
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
 import java.util.Date;
@@ -25,7 +28,7 @@ public class User {
     private String password;
 
     @NotNull
-    private String type;
+    private UserTypeEnum type;
 
     private Date birthday;
     private byte[] img_profile;
@@ -41,7 +44,7 @@ public class User {
         this.birthday = birthday;
     }
 
-    public User(int id, String username, String email, String password, String type, Date birthday, byte[] img_profile) {
+    public User(int id, String username, String email, String password, UserTypeEnum type, Date birthday, byte[] img_profile) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -57,7 +60,7 @@ public class User {
         this.email = userDTO.getEmail();
         this.password = userDTO.getPassword();
         this.birthday = userDTO.getBirthday();
-        this.type = "teste";
+        this.type = UserTypeEnum.JOGADOR;
     }
 
     public int getId() {
@@ -76,7 +79,7 @@ public class User {
         return password;
     }
 
-    public String getType() {
+    public UserTypeEnum getType() {
         return type;
     }
 
@@ -100,7 +103,7 @@ public class User {
         this.password = password;
     }
 
-    public void setType(String type) {
+    public void setType(UserTypeEnum type) {
         this.type = type;
     }
 
