@@ -9,7 +9,6 @@ public class BackendApplication {
 	public static void main(String[] args) {
 
 		// TODO: Classe de exception UserNotFound
-		// TODO: Maven, PostgreSQL e FlyWay
 		SpringApplication.run(BackendApplication.class, args);
 
 	}

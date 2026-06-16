@@ -1,7 +1,11 @@
 package com.rpg_manager.backend.model;
 
 import com.rpg_manager.backend.dto.UserDTO;
+import com.rpg_manager.backend.enums.UserTypeEnum;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -16,7 +20,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @NotNull
     private String username;
@@ -27,10 +31,12 @@ public class User {
     @NotNull
     private String password;
 
-    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private UserTypeEnum type;
 
     private Date birthday;
+
     private byte[] img_profile;
 
 

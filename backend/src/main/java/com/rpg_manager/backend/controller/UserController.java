@@ -28,6 +28,15 @@ public class UserController {
         return userService.findById(id);
     }
 
+    @GetMapping("/username/{username}")
+    public User findUserByUsername(@PathVariable("username") String username){
+        return userService.findByUsername(username);
+    }
+
+    @GetMapping("/search")
+    public User findUserByEmail(@RequestParam String email){
+        return userService.findByEmail(email);
+    }
 
     @PostMapping
     public User createUser(@Valid @RequestBody UserDTO newUser){

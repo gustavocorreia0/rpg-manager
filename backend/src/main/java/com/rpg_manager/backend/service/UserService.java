@@ -1,8 +1,10 @@
 package com.rpg_manager.backend.service;
 
 import com.rpg_manager.backend.exception.UserAlreadyExistsException;
+import com.rpg_manager.backend.exception.UserNotFoundException;
 import com.rpg_manager.backend.model.User;
 import com.rpg_manager.backend.repository.UserRepository;
+import org.jspecify.annotations.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -14,13 +16,26 @@ public class UserService {
     private UserRepository userRepository;
 
     public User findById(Integer id) {
-        return userRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuário desconhecido"));
+        return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
     }
 
-    public User createUser(User user) {
-        if ((userRepository.findByUsername(user.getUsername()) != null) || (userRepository.findByEmail(user.getEmail()) != null)) {
-            throw new UserAlreadyExistsException();
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username).orElseThrow(() -> new UserNotFoundException("username", username));
+    }
+
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email).orElseThrow(() -> new UserNotFoundException("email", email));
+    }
+
+    public User createUser(@NonNull User user) {
+        if (userRepository.existsByUsername(user.getUsername())) {
+            throw new UserAlreadyExistsException(user.getUsername());
         }
+
+        if (userRepository.existsByEmail(user.getEmail())) {
+            throw new UserAlreadyExistsException(user.getEmail());
+        }
+
         return userRepository.save(user);
     }
 
