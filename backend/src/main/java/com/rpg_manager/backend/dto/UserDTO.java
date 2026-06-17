@@ -11,12 +11,15 @@ public class UserDTO {
     @NotBlank(message = "Nome de usuário não pode ser vazio")
     @Size(min = 1, max = 64, message = "Tamanho do username não pode exceder 64 caracteres")
     private String username;
+
     @NotBlank(message = "E-mail não pode ser vazio")
     @Email(message = "E-mail deve ser válido")
     private String email;
+
     @NotBlank(message = "A senha não deve ser vazia")
     @Size(min = 1, max = 64, message = "Tamanho da senha não pode exceder 64 caracteres")
     private String password;
+
     private Date birthday;
 
 

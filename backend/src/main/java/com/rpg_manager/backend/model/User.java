@@ -1,6 +1,5 @@
 package com.rpg_manager.backend.model;
 
-import com.rpg_manager.backend.dto.UserDTO;
 import com.rpg_manager.backend.enums.UserTypeEnum;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -41,32 +40,6 @@ public class User {
 
 
     public User(){
-    }
-
-    public User(String username, String email, String password, Date birthday) {
-        this.username = username;
-        this.email = email;
-        this.password = password;
-        this.birthday = birthday;
-    }
-
-    public User(int id, String username, String email, String password, UserTypeEnum type, Date birthday, byte[] img_profile) {
-        this.id = id;
-        this.username = username;
-        this.email = email;
-        this.password = password;
-        this.type = type;
-        this.birthday = birthday;
-        this.img_profile = img_profile;
-    }
-
-    // Construtor com type setado fixo
-    public User(UserDTO userDTO){
-        this.username = userDTO.getUsername();
-        this.email = userDTO.getEmail();
-        this.password = userDTO.getPassword();
-        this.birthday = userDTO.getBirthday();
-        this.type = UserTypeEnum.JOGADOR;
     }
 
     public int getId() {

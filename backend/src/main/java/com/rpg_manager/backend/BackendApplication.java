@@ -8,7 +8,6 @@ public class BackendApplication {
 
 	public static void main(String[] args) {
 
-		// TODO: Classe de exception UserNotFound
 		SpringApplication.run(BackendApplication.class, args);
 
 	}

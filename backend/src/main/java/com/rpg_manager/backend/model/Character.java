@@ -1,7 +1,11 @@
 package com.rpg_manager.backend.model;
 
-import com.rpg_manager.backend.dto.CharacterDTO;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_characters")
@@ -12,27 +16,12 @@ public class Character {
     private int id;
     @Column(name = "id_user")
     private int id_User;
-    //private int id_Saga;
+    private int id_Saga;
     private String name;
     private String type;
     private float money;
 
     public Character(){
-    }
-
-    public Character(int id, int id_User, int id_Saga, String name, String type, float money) {
-        this.id = id;
-        this.id_User = id_User;
-        //this.id_Saga = id_Saga;
-        this.name = name;
-        this.type = type;
-        this.money = money;
-    }
-
-    public Character(CharacterDTO characterDTO) {
-        this.name = characterDTO.getName();
-        this.type = characterDTO.getType();
-        this.money = 0;
     }
 
     public int getId() {
@@ -43,9 +32,9 @@ public class Character {
         return id_User;
     }
 
-    //public int getId_Saga() {
-    //    return id_Saga;
-    //}
+    public int getId_Saga() {
+        return id_Saga;
+    }
 
     public String getName() {
         return name;
@@ -63,9 +52,9 @@ public class Character {
         this.id_User = id_User;
     }
 
-    //public void setId_Saga(int id_Saga) {
-    //    this.id_Saga = id_Saga;
-    //}
+    public void setId_Saga(int id_Saga) {
+        this.id_Saga = id_Saga;
+    }
 
     public void setName(String name) {
         this.name = name;
